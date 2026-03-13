@@ -1,31 +1,33 @@
 
+
 import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import { useAdmin } from './context/AdminContext';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 
-function Home() {
-  return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-background text-text">
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Foci Bajnokság Információs Oldal</h1>
-      <p className="text-base md:text-lg lg:text-xl">Üdvözlünk a bajnokság főoldalán!</p>
-    </main>
-  );
-}
 
 
 function App() {
+  // Admin állapot lekérése
+  const { isAdmin } = useAdmin();
   return (
-    <div className='App'>
+      <div className='App'>
         <BrowserRouter>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
+            {/* Admin-only route */}
+            <Route path="/dashboard" element={isAdmin ? <Dashboard /> : <NotFound />} />
           </Routes>
         </BrowserRouter>
-    </div>
+      </div>
   );
 }
 

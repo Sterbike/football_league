@@ -8,24 +8,24 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#2563eb', // kék
-          dark: '#1e40af',
+          DEFAULT: '#B0DB9C', // világos zöld
+          dark: '#181C14',
         },
         secondary: {
-          DEFAULT: '#fbbf24', // sárga
-          dark: '#b45309',
+          DEFAULT: '#DDF6D2', // világos zöld
+          dark: '#697565', // sötét zöld
         },
         background: {
-          DEFAULT: '#f9fafb', // világos háttér
-          dark: '#18181b', // sötét háttér
+          DEFAULT: '#ECFAE5', // világos háttér
+          dark: '#3C3D37', // sötét háttér
         },
         text: {
           DEFAULT: '#18181b', // világos szöveg
-          dark: '#f9fafb', // sötét szöveg
+          dark: '#B0DB9C', // sötét szöveg
         },
         accent: {
           DEFAULT: '#10b981', // zöld
-          dark: '#047857',
+          dark: '#181C14',
         },
       },
     },
