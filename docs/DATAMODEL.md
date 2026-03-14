@@ -33,7 +33,6 @@
 | age | number |
 | position | string |
 | teamId | string |
-| goals | number |
 
 
 ### 4. Match
