@@ -5,7 +5,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const NotFound = () => {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-background text-text dark:bg-background-dark dark:text-text-dark transition-colors">
+    <main className="flex-1 flex flex-col items-center justify-center bg-background text-text dark:bg-background-dark dark:text-text-dark transition-colors">
       <DotLottieReact
         className='h-64'
         src="https://lottie.host/789aaa1e-4152-4eee-bdb5-46d2f9dc8932/ESZHTElgK2.lottie"

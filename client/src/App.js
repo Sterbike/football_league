@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import { useAdmin } from './context/AdminContext';
+import { useUser } from './context/UserContext';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 
@@ -14,18 +14,20 @@ import Login from './pages/Login';
 
 function App() {
   // Admin állapot lekérése
-  const { isAdmin } = useAdmin();
+  const { user } = useUser();
   return (
       <div className='App'>
         <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
-            {/* Admin-only route */}
-            <Route path="/dashboard" element={isAdmin ? <Dashboard /> : <NotFound />} />
-          </Routes>
+            <Navbar />
+            <div className="flex flex-col mt-[64px]" style={{ minHeight: 'calc(100vh - 64px)' }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<NotFound />} />
+                {/* Admin-only route */}
+                <Route path="/dashboard" element={user.isAdmin ? <Dashboard /> : <NotFound />} />
+              </Routes>
+            </div>
         </BrowserRouter>
       </div>
   );

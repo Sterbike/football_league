@@ -1,48 +1,34 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAdmin } from '../context/AdminContext';
+import { useUser } from '../context/UserContext';
+import { useTheme } from '../context/ThemeContext';
+
 
 const Navbar = () => {
-const { isAdmin } = useAdmin();
+  const { user } = useUser();
 
 const ThemeToggle = () => {
-      // Ellenőrizzük, hogy jelenleg sötét mód van-e
-      const isDark = typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
-      const [dark, setDark] = React.useState(isDark);
-      
-
-      // Téma váltása gombnyomásra
-      const handleToggle = () => {
-        if (typeof window !== 'undefined') {
-          if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            setDark(false);
-          } else {
-            document.documentElement.classList.add('dark');
-            setDark(true);
-          }
-        }
-      };
-
-      return (
-        <button
-          onClick={handleToggle}
-          className="px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 bg-secondary text-text dark:bg-secondary-dark dark:text-primary-dark transition-colors"
-          aria-label={dark ? 'Világos mód' : 'Sötét mód'}
-          title={dark ? 'Világos mód' : 'Sötét mód'}
-        >
-          {dark ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
-          )}
-        </button>
-      );
-    };
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <button
+      onClick={toggleTheme}
+      className="px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 bg-secondary text-text dark:bg-secondary-dark dark:text-primary-dark transition-colors"
+      aria-label={theme === 'dark' ? 'Világos mód' : 'Sötét mód'}
+      title={theme === 'dark' ? 'Világos mód' : 'Sötét mód'}
+    >
+      {theme === 'dark' ? (
+        <svg xmlns="http://www.w3.org/2000/svg" className="size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" className="size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
+      )}
+    </button>
+  );
+};
 
 
   return (
-    <header className="w-screen bg-primary text-text shadow-md dark:bg-primary-dark dark:text-text-dark transition-colors absolute top-0 z-50">
+    <header className="w-full bg-primary text-text shadow-md dark:bg-primary-dark dark:text-text-dark transition-colors fixed top-0 left-0 z-50">
       <nav className="w-full flex items-center py-3 px-4 relative" aria-label="Fő navigáció">
         {/* Középre igazított menük */}
         <div className="flex-1" />
@@ -61,7 +47,7 @@ const ThemeToggle = () => {
           </li>
           <li>
           
-            {isAdmin && (
+            {user.isAdmin && (
               <Link to="/dashboard" className="text-base md:text-lg lg:text-xl font-medium hover:text-accent focus:outline-none focus:text-accent transition-colors" aria-label="Dashboard">Dashboard</Link>
             )}
           </li>
