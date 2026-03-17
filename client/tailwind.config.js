@@ -19,10 +19,6 @@ module.exports = {
           DEFAULT: '#ECFAE5', // világos háttér
           dark: '#3C3D37', // sötét háttér
         },
-        text: {
-          DEFAULT: '#18181b', // világos szöveg
-          dark: '#B0DB9C', // sötét szöveg
-        },
         accent: {
           DEFAULT: '#10b981', // zöld
           dark: '#181C14',

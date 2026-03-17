@@ -1,6 +1,13 @@
 import React from "react";
 
-export default function MatchFlexList({ matches, teams, previous = false, upcoming = false, limit = 5 }) {
+function formatDate(dateStr) {
+  const dateObj = new Date(dateStr);
+  const month = dateObj.toLocaleString('hu-HU', { month: 'long' });
+  const day = dateObj.getDate();
+  return `${month.charAt(0).toUpperCase() + month.slice(1)} ${day}.`;
+}
+
+export default function MatchFlexList({ matches, teams, previous = false, upcoming = false, limit = 5, hideDate = false }) {
   // Only one filter is active
   let filtered = matches;
   const now = new Date();
@@ -22,7 +29,11 @@ export default function MatchFlexList({ matches, teams, previous = false, upcomi
             <span className="mx-2 text-accent font-semibold">vs</span>
             <span className="font-bold text-base transition hover:text-accent cursor-pointer">{away}</span>
             <span className="mx-2 font-extrabold text-lg">{match.homeGoals} : {match.awayGoals}</span>
-            <span className="text-xs text-primary/60">{match.date}</span>
+            <span className="text-xs">{
+              hideDate
+                ? match.time
+                : `${formatDate(match.date)} ${match.time}`
+            }</span>
           </li>
         );
       })}

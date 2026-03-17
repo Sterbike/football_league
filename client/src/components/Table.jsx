@@ -3,7 +3,7 @@ import React from "react";
 export default function Table({
   data,
   limit = 5,
-  title = "Tabella",
+  title,
   columns = [
     { key: "team", label: "Csapat", render: (row) => (
       <span className="font-bold flex items-center gap-2">
@@ -19,7 +19,9 @@ export default function Table({
   const shownRows = data.slice(0, limit);
   return (
     <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4">
-      <h2 className="text-xl font-semibold mb-2">{title}</h2>
+      {title && (
+        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+      )}
       <table className="w-full text-left border-separate border-spacing-y-1">
         <thead>
           <tr>
