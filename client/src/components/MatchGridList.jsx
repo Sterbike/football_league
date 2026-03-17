@@ -24,12 +24,15 @@ export default function MatchFlexList({ matches, teams, previous = false, upcomi
         const home = teams.find(t => t.id === match.homeTeamId)?.name || 'Ismeretlen';
         const away = teams.find(t => t.id === match.awayTeamId)?.name || 'Ismeretlen';
         return (
-          <li key={match.id} className="flex items-center justify-between py-2">
-            <span className="font-bold text-base transition hover:text-accent cursor-pointer">{home}</span>
-            <span className="mx-2 text-accent font-semibold">vs</span>
-            <span className="font-bold text-base transition hover:text-accent cursor-pointer">{away}</span>
-            <span className="mx-2 font-extrabold text-lg">{match.homeGoals} : {match.awayGoals}</span>
-            <span className="text-xs">{
+          <li
+            key={match.id}
+            className="grid grid-cols-5 items-center py-2 gap-2 text-center"
+          >
+            <span className="font-bold text-base transition hover:text-accent cursor-pointer col-span-1">{home}</span>
+            <span className="text-accent font-semibold col-span-1">vs</span>
+            <span className="font-bold text-base transition hover:text-accent cursor-pointer col-span-1">{away}</span>
+            <span className="font-extrabold text-lg col-span-1">{match.homeGoals} : {match.awayGoals}</span>
+            <span className="text-xs col-span-1">{
               hideDate
                 ? match.time
                 : `${formatDate(match.date)} ${match.time}`

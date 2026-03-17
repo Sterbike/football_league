@@ -37,6 +37,21 @@ const TabellaPage = () => {
           ]}
         />
       </div>
+      {/* Legend below table */}
+      <div className="w-full max-w-4xl mx-auto mt-6 flex flex-col md:flex-row gap-2 md:gap-6 items-start md:items-center">
+        <div className="flex items-center gap-2">
+          <span className="inline-block w-4 h-4 rounded-full bg-green-500 border-2 border-green-600"></span>
+          <span className="text-sm">Bajnokok Ligája</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-block w-4 h-4 rounded-full bg-blue-500 border-2 border-blue-600"></span>
+          <span className="text-sm">Európa Liga</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-block w-4 h-4 rounded-full bg-red-500 border-2 border-red-600"></span>
+          <span className="text-sm">Kieső</span>
+        </div>
+      </div>
     </main>
   );
 };

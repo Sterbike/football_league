@@ -1,6 +1,6 @@
 import React from "react";
 import { matches, teams } from '../data/mockdata';
-import MatchFlexList from '../components/MatchFlexList';
+import MatchFlexList from '../components/MatchGridList';
 
 const MatchList = () => {
   // Dátum szerinti csoportosítás

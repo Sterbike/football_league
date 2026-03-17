@@ -1,7 +1,7 @@
 import React from "react";
 import { teams, players, matches, playerStatistics, teamStatistics } from "../data/mockdata";
 import Table from "../components/Table";
-import MatchFlexList from "../components/MatchFlexList";
+import MatchFlexList from "../components/MatchGridList";
 
 const Home = () => {
   return (

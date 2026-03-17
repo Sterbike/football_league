@@ -38,9 +38,6 @@ const ThemeToggle = () => {
         <Link to="/" className="text-base md:text-lg lg:text-xl font-medium hover:text-accent focus:outline-none focus:text-accent transition-colors" aria-label="Főoldal" onClick={() => setMenuOpen(false)}>Főoldal</Link>
       </li>
       <li>
-        <Link to="/csapatok" className="text-base md:text-lg lg:text-xl font-medium hover:text-accent focus:outline-none focus:text-accent transition-colors" aria-label="Csapatok" onClick={() => setMenuOpen(false)}>Csapatok</Link>
-      </li>
-      <li>
         <Link to="/tabella" className="text-base md:text-lg lg:text-xl font-medium hover:text-accent focus:outline-none focus:text-accent transition-colors" aria-label="Tabella" onClick={() => setMenuOpen(false)}>Tabella</Link>
       </li>
       <li>

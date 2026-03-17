@@ -18,37 +18,54 @@ export default function Table({
 }) {
   const shownRows = data.slice(0, limit);
   return (
-    <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4">
+    <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4 pl-0">
       {title && (
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
       )}
       <table className="w-full text-left border-separate border-spacing-y-1">
         <thead>
           <tr>
+            <th className="py-1 text-center">#</th>
             {columns.map((col, idx) => (
               <th key={col.key} className="py-1">{col.label}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {shownRows.map((row, i) => (
-            <tr
-              key={row.id}
-              className={
-                `transition-colors bg-background dark:bg-background-dark hover:bg-accent hover:text-background dark:hover:bg-accent dark:hover:text-background cursor-pointer ` +
-                (i === 0 ? 'text-accent dark:text-accent font-extrabold text-lg' : '')
-              }
-            >
-              {columns.map((col, idx) => (
-                <td
-                  key={col.key}
-                  className={`py-2 px-2 ${idx === 0 ? 'rounded-l' : ''} ${idx === columns.length - 1 ? 'rounded-r' : ''}`}
-                >
-                  {col.render ? col.render(row) : row[col.key]}
+          {shownRows.map((row, i) => {
+            // Border color logic for Tabella (no title)
+            let borderClass = '';
+            if (!title || title.toLowerCase() === 'tabella') {
+              if (i < 4) borderClass = 'border-l-4 border-green-500';
+              else if (i === 4) borderClass = 'border-l-4 border-blue-500';
+              else if (i >= shownRows.length - 3) borderClass = 'border-l-4 border-red-500';
+            }
+            return (
+              <tr key={row.id || row.name || i} className="group">
+                {/* Ranking column, visually separated, not part of hover/clickable area */}
+                <td className={
+                  `py-2 px-2 font-bold text-center ${i === 0 ? 'text-accent dark:text-accent text-lg' : ''} ${borderClass}`
+                } style={{ borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem' }}>
+                  {i + 1}
                 </td>
-              ))}
-            </tr>
-          ))}
+                {/* Main columns, hover/clickable as a group */}
+                {columns.map((col, idx) => (
+                  <td
+                    key={col.key}
+                    className={
+                      `py-2 px-2 transition-colors bg-background dark:bg-background-dark cursor-pointer ` +
+                      'group-hover:bg-accent group-hover:text-background dark:group-hover:bg-accent dark:group-hover:text-background ' +
+                      (i === 0 ? 'font-extrabold' : '') +
+                      (idx === 0 ? ' rounded-l-none' : '') +
+                      (idx === columns.length - 1 ? ' rounded-r' : '')
+                    }
+                  >
+                    {col.render ? col.render(row, i, shownRows) : row[col.key]}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
