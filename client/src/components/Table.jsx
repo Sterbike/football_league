@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Table({
   data,
   limit = 5,
   title,
+  showTitle = true,
   columns = [
     { key: "team", label: "Csapat", render: (row) => (
       <span className="font-bold flex items-center gap-2">
@@ -17,9 +19,10 @@ export default function Table({
   ]
 }) {
   const shownRows = data.slice(0, limit);
+  const navigate = useNavigate();
   return (
     <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4 pl-0">
-      {title && (
+      {title && showTitle && (
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
       )}
       <table className="w-full text-left border-separate border-spacing-y-1">
@@ -34,8 +37,14 @@ export default function Table({
         <tbody>
           {shownRows.map((row, i) => {
             // Border color logic for Tabella (no title)
+            // Click handler for league table
+            const handleRowClick = () => {
+              if (title.toLowerCase() === 'tabella' && row.id) {
+                navigate(`/team/${row.id}`);
+              }
+            };
             let borderClass = '';
-            if (!title || title.toLowerCase() === 'tabella') {
+            if (title.toLowerCase() === 'tabella') {
               if (i < 4) borderClass = 'border-l-4 border-green-500';
               else if (i === 4) borderClass = 'border-l-4 border-blue-500';
               else if (i >= shownRows.length - 3) borderClass = 'border-l-4 border-red-500';
@@ -59,6 +68,7 @@ export default function Table({
                       (idx === 0 ? ' rounded-l-none' : '') +
                       (idx === columns.length - 1 ? ' rounded-r' : '')
                     }
+                    onClick={handleRowClick}
                   >
                     {col.render ? col.render(row, i, shownRows) : row[col.key]}
                   </td>

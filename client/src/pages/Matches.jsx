@@ -1,6 +1,6 @@
 import React from "react";
 import { matches, teams } from '../data/mockdata';
-import MatchFlexList from '../components/MatchGridList';
+import MatchGridList from '../components/MatchGridList';
 
 const MatchList = () => {
   // Dátum szerinti csoportosítás
@@ -38,7 +38,7 @@ const MatchList = () => {
                   ? 'Holnap'
                   : formatDate(date)
             }</h2>
-            <MatchFlexList
+            <MatchGridList
               matches={grouped[date]}
               teams={teams}
               previous={false}

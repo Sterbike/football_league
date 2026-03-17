@@ -1,26 +1,26 @@
 import React from "react";
 import { teams, players, matches, playerStatistics, teamStatistics } from "../data/mockdata";
 import Table from "../components/Table";
-import MatchFlexList from "../components/MatchGridList";
+import MatchGridList from "../components/MatchGridList";
 
 const Home = () => {
   return (
     <main className="px-[4vw] flex-1 transition-colors flex flex-col items-center bg-background dark:bg-background-dark dark:text-primary text-primary-dark">
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 mt-8">
-        Foci Bajnokság Információs Oldal
+        Premier League
       </h1>
       <p className="text-base md:text-lg lg:text-xl mb-4">
         Üdvözlünk a bajnokság főoldalán!
       </p>
-      <section className="w-full max-w-4xl mx-auto flex flex-col gap-8 mt-8 md:grid md:grid-cols-2">
+      <section className="w-full max-w-6xl mx-auto flex flex-col gap-8 mt-8 md:grid md:grid-cols-2">
         <div className="w-full flex flex-col col-span-2 md:flex-row gap-8 mt-4">
           <div className="flex-1">
             <h2 className="text-xl font-semibold mb-2">Legutóbbi mérkőzések</h2>
-            <MatchFlexList matches={matches} teams={teams} previous limit={3} />
+            <MatchGridList matches={matches} teams={teams} previous limit={3} />
           </div>
           <div className="flex-1">
             <h2 className="text-xl font-semibold mb-2">Következő mérkőzések</h2>
-            <MatchFlexList matches={matches} teams={teams} upcoming limit={3} />
+            <MatchGridList matches={matches} teams={teams} upcoming limit={3} />
           </div>
         </div>
 

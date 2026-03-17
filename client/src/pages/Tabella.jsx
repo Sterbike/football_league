@@ -8,6 +8,8 @@ const TabellaPage = () => {
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 mt-8">Tabella</h1>
       <div className="w-full max-w-4xl mx-auto mt-8">
         <Table
+        title={"tabella"}
+        showTitle={false}
           data={teams
             .map(team => {
               const stats = teamStatistics.find(ts => ts.teamId === team.id);
