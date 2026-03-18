@@ -32,15 +32,7 @@ const NextMatchCard = ({ teamId }) => {
   const awayName = awayTeam ? awayTeam.name : 'Ismeretlen';
 
   // Stadium info
-  let stadiumLabel = '';
-  if (homeTeam && homeTeam.stadiumId) {
-    const stadium = stadiums.find(s => s.id === homeTeam.stadiumId);
-    if (stadium) {
-      stadiumLabel = stadium.name;
-    } else {
-      stadiumLabel = homeTeam.stadiumId;
-    }
-  }
+  let stadiumLabel = stadiums.find(s => s.id === homeTeam.stadiumId)?.name || 'Ismeretlen helyszín';
 
   // Date formatting
   let dateLabel = '';
@@ -55,8 +47,8 @@ const NextMatchCard = ({ teamId }) => {
   }
 
   return (
-    <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4 flex flex-col items-center justify-center">
-      <div className="flex items-center gap-2 text-lg font-semibold mb-2">
+    <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4 flex flex-col items-center align-middle justify-center">
+      <div className="flex items-center gap-2 text-lg font-semibold mb-1">
         <span>{homeName}</span>
         <span className="text-accent">vs</span>
         <span>{awayName}</span>
@@ -67,7 +59,6 @@ const NextMatchCard = ({ teamId }) => {
         </div>
         <span className="text-right">{stadiumLabel}</span>
       </div>
-      
     </div>
   );
 };

@@ -35,6 +35,7 @@ const Home = () => {
             })
             .sort((a, b) => b.points - a.points)
           }
+          showRanking={true}
           limit={5}
           title="Tabella"
           columns={[

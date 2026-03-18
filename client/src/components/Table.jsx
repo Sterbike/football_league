@@ -16,19 +16,22 @@ export default function Table({
       </span>
     ) },
     { key: "points", label: "Pont" }
-  ]
+  ],
+  showRanking = true
 }) {
   const shownRows = data.slice(0, limit);
   const navigate = useNavigate();
   return (
-    <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4 pl-0">
+    <div className={
+      `bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4${showRanking ? ' pl-0' : ''}`
+    }>
       {title && showTitle && (
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
       )}
       <table className="w-full text-left border-separate border-spacing-y-1">
         <thead>
           <tr>
-            <th className="py-1 text-center">#</th>
+            {showRanking && <th className="py-1 text-center">#</th>}
             {columns.map((col, idx) => (
               <th key={col.key} className="py-1">{col.label}</th>
             ))}
@@ -39,12 +42,12 @@ export default function Table({
             // Border color logic for Tabella (no title)
             // Click handler for league table
             const handleRowClick = () => {
-              if (title.toLowerCase() === 'tabella' && row.id) {
+              if (title && title.toLowerCase() === 'tabella' && row.id) {
                 navigate(`/team/${row.id}`);
               }
             };
             let borderClass = '';
-            if (title.toLowerCase() === 'tabella') {
+            if (title && title.toLowerCase() === 'tabella') {
               if (i < 4) borderClass = 'border-l-4 border-green-500';
               else if (i === 4) borderClass = 'border-l-4 border-blue-500';
               else if (i >= shownRows.length - 3) borderClass = 'border-l-4 border-red-500';
@@ -52,11 +55,13 @@ export default function Table({
             return (
               <tr key={row.id || row.name || i} className="group">
                 {/* Ranking column, visually separated, not part of hover/clickable area */}
-                <td className={
-                  `py-2 px-2 font-bold text-center ${i === 0 ? 'text-accent dark:text-accent text-lg' : ''} ${borderClass}`
-                } style={{ borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem' }}>
-                  {i + 1}
-                </td>
+                {showRanking && (
+                  <td className={
+                    `py-2 px-2 font-bold text-center ${i === 0 ? 'text-accent dark:text-accent text-lg' : ''} ${borderClass}`
+                  } style={{ borderTopLeftRadius: '0.5rem', borderBottomLeftRadius: '0.5rem' }}>
+                    {i + 1}
+                  </td>
+                )}
                 {/* Main columns, hover/clickable as a group */}
                 {columns.map((col, idx) => (
                   <td

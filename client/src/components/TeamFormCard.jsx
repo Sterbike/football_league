@@ -39,7 +39,7 @@ const TeamFormCard = ({ teamId }) => {
 
   return (
     <div className="bg-secondary dark:bg-secondary-dark rounded-lg shadow p-4">
-      <div className="flex gap-2">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
         {teamMatches.map((match, idx) => {
           const { opponentName, result, score } = getMatchInfo(match);
           let bgColor = '';
@@ -48,13 +48,11 @@ const TeamFormCard = ({ teamId }) => {
           else if (result === 'loss') bgColor = 'bg-red-500 text-white';
           return (
             <React.Fragment key={match.id}>
-              <div className="flex flex-col items-center min-w-[80px]">
-                <span className={`font-semibold mb-1 rounded-full px-3 py-1 text-base ${bgColor}`}>{score}</span>
+              <div className="flex flex-col items-center align-middle justify-center">
+                <span className={`font-semibold mb-1 rounded-full px-3 py-1 text-base whitespace-nowrap ${bgColor}`}>{score}</span>
                 <span className="text-sm text-center mt-1">{opponentName}</span>
               </div>
-              {idx < teamMatches.length - 1 && (
-                <div className="w-px h-10 bg-accent/40 self-center mx-1" />
-              )}
+              
             </React.Fragment>
           );
         })}

@@ -12,14 +12,14 @@ export const teams = [
   { id: "t10", name: "Fulham", stadiumId: "craven_cottage" },
   { id: "t11", name: "Liverpool", stadiumId: "anfield" },
   { id: "t12", name: "Luton Town", stadiumId: "kenilworth_road" },
-  { id: "t13", name: "Manchester City", stadiumId: "etihad_stadium" },
+  { id: "t13", name: "Manchester City", stadiumId: "etihad" },
   { id: "t14", name: "Manchester United", stadiumId: "old_trafford" },
   { id: "t15", name: "Newcastle United", stadiumId: "st_james_park" },
   { id: "t16", name: "Nottingham Forest", stadiumId: "city_ground" },
   { id: "t17", name: "Sheffield United", stadiumId: "bramall_lane" },
   { id: "t18", name: "Tottenham Hotspur", stadiumId: "tottenham_hotspur_stadium" },
   { id: "t19", name: "West Ham United", stadiumId: "london_stadium" },
-  { id: "t20", name: "Wolverhampton Wanderers", stadiumId: "molineux" },
+  { id: "t20", name: "Wolves", stadiumId: "molineux" },
 ];
 
 // Premier League Players (sample)
@@ -268,7 +268,7 @@ export const stadiums = [
   { id: "kenilworth", city: "Luton", capacity: 10556, opened: 1905, name: "Kenilworth Road" },
   { id: "etihad", city: "Manchester", capacity: 53400, opened: 2002, name: "Etihad Stadium" },
   { id: "old_trafford", city: "Manchester", capacity: 74879, opened: 1910, name: "Old Trafford" },
-  { id: "st_james", city: "Newcastle", capacity: 52305, opened: 1892, name: "St. James' Park" },
+  { id: "st_james_park", city: "Newcastle", capacity: 52305, opened: 1892, name: "St. James' Park" },
   { id: "city_ground", city: "Nottingham", capacity: 30000, opened: 1898, name: "City Ground" },
   { id: "bramall_lane", city: "Sheffield", capacity: 32050, opened: 1855, name: "Bramall Lane" },
   { id: "tottenham_hotspur", city: "London", capacity: 62850, opened: 2019, name: "Tottenham Hotspur Stadium" },
